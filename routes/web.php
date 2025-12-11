@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PengajuanCutiController;
 
 Route::get('/', function () {
     return view('/login');
@@ -27,3 +28,13 @@ Route::middleware(['auth', 'checkrole:pegawai'])->get('/pegawai/dashboard', func
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/owner/dashboard', [OwnerController::class, 'dashboard'])->name('owner.dashboard');
 Route::get('/pegawai/dashboard', [PegawaiController::class, 'dashboard'])->name('pegawai.dashboard');
+
+//Pengajuan Cuti 
+Route::middleware(['auth', 'checkrole:pegawai'])->group(function () {
+    Route::get('/cuti', [PengajuanCutiController::class, 'index'])->name('cuti.index');
+    Route::get('/cuti/create', [PengajuanCutiController::class, 'create'])->name('cuti.create');
+    Route::post('/cuti/store', [PengajuanCutiController::class, 'store'])->name('cuti.store');
+    Route::get('/cuti/{id}/edit', [PengajuanCutiController::class, 'edit'])->name('cuti.edit');
+    Route::put('/cuti/{id}/update', [PengajuanCutiController::class, 'update'])->name('cuti.update');
+    Route::delete('/cuti/{id}/delete', [PengajuanCutiController::class, 'destroy'])->name('cuti.delete');
+});
