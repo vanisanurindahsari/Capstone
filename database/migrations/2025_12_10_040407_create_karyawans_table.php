@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
+
+            // Foreign Key ke users
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+
+            $table->string('nama_lengkap');
+            $table->string('no_telp', 20)->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->text('alamat')->nullable();
+
             $table->timestamps();
         });
     }
