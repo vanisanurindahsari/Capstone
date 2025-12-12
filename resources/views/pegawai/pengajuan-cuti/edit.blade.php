@@ -3,7 +3,7 @@
 @section('content')
 <h3>Edit Pengajuan Cuti</h3>
 
-<form action="{{ route('cuti.update', $pengajuan->id) }}" method="POST" class="card p-4 mt-3">
+<form action="{{ route('pegawai.cuti.update', $pengajuan->id) }}" method="POST" class="card p-4 mt-3">
     @csrf @method('PUT')
 
     <div class="mb-3">
@@ -32,6 +32,6 @@
     </div>
 
     <button class="btn btn-success">Update</button>
-    <a href="{{ route('cuti.index') }}" class="btn btn-secondary">Kembali</a>
+    <a href="{{ route('pegawai.cuti.index') }}" class="btn btn-secondary">Kembali</a>
 </form>
 @endsection

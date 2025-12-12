@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Pegawai' }}</title>
+    <title>{{ $title ?? 'ABSENSI FREE' }}</title>
 
+    {{-- BOOTSTRAP --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    {{-- VITE --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Tambahan untuk DataTables CSS --}}
     @stack('styles')
 
     <style>
@@ -20,12 +23,10 @@
             align-items: center;
             cursor: pointer;
         }
-
         .dropdown-arrow {
             transition: 0.3s;
             font-size: 16px;
         }
-
         .dropdown-arrow.rotate {
             transform: rotate(90deg);
         }
@@ -35,55 +36,73 @@
 <body>
 
     {{-- SIDEBAR --}}
-    <div class="sidebar">
-        <div class="sidebar-title">ABSENSI FREE</div>
+ <div class="sidebar">
+    <div class="sidebar-title">ABSENSI FREE</div>
 
-        <a href="#" class="menu-item"><i>🏠</i> Dashboard</a>
+    {{-- ADMIN --}}
+    @if(auth()->user()->role === 'admin')
+        <a href="{{ route('admin.dashboard') }}"
+           class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i> Dashboard
+        </a>
 
-        <a href="#" class="menu-item"><i>👤</i> Data Karyawan</a>
+        <a href="{{ route('admin.karyawan.index') }}"
+           class="menu-item {{ request()->routeIs('admin.karyawan.*') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-users"></i> Data Karyawan
+        </a>
 
-        <a href="#" class="menu-item"><i>📅</i> Kehadiran</a>
+        <a href="#" class="menu-item">
+            <i class="fas fa-fw fa-calendar-check"></i> Kehadiran
+        </a>
+                <a href="#" class="menu-item">
+            <i class="fas fa-fw fa-paper-plane"></i> Cuti
+        </a>
+    @endif
 
-        {{-- === PENGAJUAN CUTI (FINAL FIX) === --}}
+    {{-- PEGAWAI --}}
+    @if(auth()->user()->role === 'pegawai')
+        <a href="{{ route('pegawai.dashboard') }}"
+           class="menu-item {{ request()->routeIs('pegawai.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i> Dashboard Pegawai
+        </a>
+
         <div class="menu-dropdown">
 
-            {{-- LINK UTAMA (PINDAH HALAMAN) --}}
-            <a href="{{ route('pegawai.dashboard') }}"
-               class="menu-item 
-                      {{ request()->routeIs('pegawai.dashboard') || request()->routeIs('cuti.*') ? 'active' : '' }}">
-                <i>📝</i> Pengajuan Cuti
+            <a href="{{ route('pegawai.cuti.index') }}"
+               class="menu-item {{ request()->routeIs('cuti.*') ? 'active' : '' }}">
+                <i class="fas fa-fw fa-file-signature"></i> Pengajuan Cuti
             </a>
 
-            {{-- TOMBOL PANAH (HANYA UNTUK DROPDOWN) --}}
             <div class="dropdown-btn-wrapper"
                  data-bs-toggle="collapse"
                  data-bs-target="#submenuCuti"
                  role="button">
-                <span style="flex:1; height: 1px;"></span>
-                <span class="dropdown-arrow {{ request()->routeIs('cuti.*') ? 'rotate' : '' }}">▶</span>
+                <span style="flex:1;"></span>
+                <span class="dropdown-arrow {{ request()->routeIs('cuti.*') ? 'rotate' : '' }}">
+                    ▶
+                </span>
             </div>
 
-            {{-- SUBMENU --}}
-            <div class="collapse {{ request()->routeIs('cuti.*') ? 'show' : '' }}" id="submenuCuti">
-                <a href="{{ route('cuti.index') }}"
+            <div class="collapse {{ request()->routeIs('cuti.*') ? 'show' : '' }}"
+                 id="submenuCuti">
+
+                <a href="{{ route('pegawai.cuti.index') }}"
                    class="submenu-item {{ request()->routeIs('cuti.index') ? 'active' : '' }}">
-                    ➤ Buat Pengajuan Cuti
+                    ➤ Ajukan Cuti
                 </a>
             </div>
+
         </div>
+    @endif
 
-        <a href="#" class="menu-item"><i>💰</i> Penggajian</a>
+    {{-- LOGOUT --}}
+    <a href="{{ route('logout') }}"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+       class="menu-item">
+        <i class="fas fa-fw fa-sign-out-alt"></i> Log Out
+    </a>
+</div>
 
-        <a href="{{ route('logout') }}"
-           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-           class="menu-item">
-            <i>🔒</i> Log Out
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
-            @csrf
-        </form>
-    </div>
 
 
     {{-- MAIN CONTENT --}}
@@ -91,7 +110,6 @@
         @yield('content')
     </div>
 
-    {{-- Tambahan untuk script DataTables --}}
     @stack('scripts')
 
     {{-- SCRIPT ROTATE PANAH --}}
@@ -99,11 +117,13 @@
         const arrowBtn = document.querySelector('.dropdown-btn-wrapper');
         const arrow = document.querySelector('.dropdown-arrow');
 
-        arrowBtn.addEventListener('click', () => {
-            setTimeout(() => {
-                arrow.classList.toggle('rotate');
-            }, 150);
-        });
+        if (arrowBtn) {
+            arrowBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    arrow.classList.toggle('rotate');
+                }, 150);
+            });
+        }
     </script>
 
 </body>

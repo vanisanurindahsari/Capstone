@@ -12,7 +12,7 @@
 
 <h3 class="page-title mb-3">Pengajuan Cuti Saya</h3>
 
-<a href="{{ route('cuti.create') }}" class="btn btn-primary mb-3 shadow-sm" style="border-radius: 10px;">
+<a href="{{ route('pegawai.cuti.create') }}" class="btn btn-primary mb-3 shadow-sm" style="border-radius: 10px;">
     + Ajukan Cuti
 </a>
 
@@ -58,10 +58,10 @@
 
                 <td class="text-center">
                     <div class="d-flex justify-content-center gap-1">
-                        <a href="{{ route('cuti.edit', $item->id) }}"
+                        <a href="{{ route('pegawai.cuti.edit', $item->id) }}"
                            class="btn btn-warning btn-sm" style="border-radius: 8px;">Edit</a>
 
-                        <form action="{{ route('cuti.delete', $item->id) }}" method="POST">
+                        <form action="{{ route('pegawai.cuti.delete', $item->id) }}" method="POST">
                             @csrf @method('DELETE')
                             <button onclick="return confirm('Hapus data?')"
                                     class="btn btn-danger btn-sm" style="border-radius: 8px;">

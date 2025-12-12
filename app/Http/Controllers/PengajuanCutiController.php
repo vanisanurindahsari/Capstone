@@ -41,7 +41,7 @@ class PengajuanCutiController extends Controller
             'status' => 'Menunggu',
         ]);
 
-        return redirect()->route('cuti.index')->with('success', 'Pengajuan cuti berhasil diajukan!');
+        return redirect()->route('pegawai.cuti.index')->with('success', 'Pengajuan cuti berhasil diajukan!');
     }
 
     public function edit($id)
@@ -81,7 +81,7 @@ class PengajuanCutiController extends Controller
             'alasan' => $request->alasan,
         ]);
 
-        return redirect()->route('cuti.index')->with('success', 'Data berhasil diperbarui!');
+        return redirect()->route('pegawai.cuti.index')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id)
@@ -94,6 +94,6 @@ class PengajuanCutiController extends Controller
 
         $pengajuan->delete();
 
-        return redirect()->route('cuti.index')->with('success', 'Pengajuan cuti berhasil dihapus!');
+        return redirect()->route('pegawai.cuti.index')->with('success', 'Pengajuan cuti berhasil dihapus!');
     }
 }

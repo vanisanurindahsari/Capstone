@@ -7,7 +7,7 @@
 
     <div class="card p-4 shadow-sm" style="border-radius: 12px;">
 
-        <form action="{{ route('cuti.store') }}" method="POST">
+        <form action="{{ route('pegawai.cuti.store') }}" method="POST">
             @csrf
 
             {{-- Nomor Induk Karyawan --}}
@@ -88,7 +88,7 @@
 
             {{-- Tombol --}}
             <div class="d-flex justify-content-between mt-4">
-                <a href="{{ route('cuti.index') }}" class="btn btn-secondary" style="border-radius: 8px;">
+                <a href="{{ route('pegawai.cuti.index') }}" class="btn btn-secondary" style="border-radius: 8px;">
                     Kembali
                 </a>
 
