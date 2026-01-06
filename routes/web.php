@@ -9,7 +9,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PengajuanCutiController;
 use App\Http\Controllers\PresensiAdminController;
 use App\Http\Controllers\PresensiPegawaiController;
-
+use App\Http\Controllers\CutiAdminController;
 
 // =============================
 // LOGIN
@@ -22,7 +22,6 @@ Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
 // =============================
 // OWNER
 // =============================
@@ -32,32 +31,7 @@ Route::middleware(['auth', 'checkrole:owner'])
     ->group(function () {
 
         // Dashboard Owner
-        Route::get('/dashboard',
-            [PengajuanCutiController::class, 'dashboardOwner']
-        )->name('dashboard');
-
-        // Setujui / Tolak Cuti
-        Route::post('/pengajuan-cuti/{id}/status',
-            [OwnerController::class, 'updateStatus']
-        )->name('cuti.updateStatus');
-
-        // EXPORT PDF (KHUSUS OWNER)
-        Route::get('/pengajuan-cuti/export/pdf',
-            [PengajuanCutiController::class, 'exportPdf']
-        )->name('cuti.export.pdf');
-});
-
-
-// =============================
-// ADMIN
-// =============================
-Route::middleware(['auth', 'checkrole:admin'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])
-            ->name('dashboard');
+        Route::get('/dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
 
         // CRUD Karyawan
         Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
@@ -69,8 +43,42 @@ Route::middleware(['auth', 'checkrole:admin'])
 
         // Presensi
         Route::get('/presensi', [PresensiAdminController::class, 'index'])->name('presensi.index');
-});
 
+        // Cuti
+        Route::get('/cuti', [CutiAdminController::class, 'index'])->name('cuti.index');
+
+        // ACC/Tolak Cuti
+        Route::post('/pengajuan-cuti/{id}/status', [OwnerController::class, 'updateStatus'])->name('cuti.updateStatus');
+
+        // Export PDF
+        Route::get('/pengajuan-cuti/export/pdf', [PengajuanCutiController::class, 'exportPdf'])->name('cuti.export.pdf');
+    });
+
+// =============================
+// ADMIN
+// =============================
+Route::middleware(['auth', 'checkrole:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        // Dashboard Admin
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+        // CRUD Karyawan
+        Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
+        Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
+        Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+        Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit');
+        Route::put('/karyawan/{id}', [KaryawanController::class, 'update'])->name('karyawan.update');
+        Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
+
+        // Presensi
+        Route::get('/presensi', [PresensiAdminController::class, 'index'])->name('presensi.index');
+
+        // Cuti
+        Route::get('/cuti', [CutiAdminController::class, 'index'])->name('cuti.index');
+    });
 
 // =============================
 // PEGAWAI
@@ -80,8 +88,7 @@ Route::middleware(['auth', 'checkrole:pegawai'])
     ->name('pegawai.')
     ->group(function () {
 
-        Route::get('/dashboard', [PegawaiController::class, 'dashboard'])
-            ->name('dashboard');
+        Route::get('/dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
 
         // Pengajuan Cuti
         Route::get('/cuti', [PengajuanCutiController::class, 'index'])->name('cuti.index');
@@ -91,11 +98,8 @@ Route::middleware(['auth', 'checkrole:pegawai'])
         Route::put('/cuti/{id}', [PengajuanCutiController::class, 'update'])->name('cuti.update');
         Route::delete('/cuti/{id}', [PengajuanCutiController::class, 'destroy'])->name('cuti.delete');
 
-        // Presensi
         // Presensi Pegawai
         Route::get('/presensi', [PresensiPegawaiController::class, 'index'])->name('presensi.index');
         Route::get('/presensi/create', [PresensiPegawaiController::class, 'create'])->name('presensi.create');
         Route::post('/presensi', [PresensiPegawaiController::class, 'store'])->name('presensi.store');
-
 });
-

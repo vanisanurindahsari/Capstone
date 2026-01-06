@@ -18,7 +18,11 @@ body {
     height: 100vh;
     border-right: 1px solid #e7e7e7;
     padding: 25px 18px;
+    display: inline-block !important;
+    color: inherit;
+    z-index: 1000;
 }
+
 
 .sidebar-title {
     font-size: 22px;

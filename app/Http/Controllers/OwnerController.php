@@ -10,6 +10,11 @@ class OwnerController extends Controller
     /**
      * Update status pengajuan cuti (Disetujui / Ditolak)
      */
+
+
+    public function dashboard() {
+        return view('owner.dashboard');
+    }
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
