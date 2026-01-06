@@ -1,12 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+use App\Models\PengajuanCuti;
 
 class OwnerController extends Controller
 {
-        public function dashboard() {
-        return view('owner.dashboard');
+    /**
+     * Update status pengajuan cuti (Disetujui / Ditolak)
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Disetujui,Ditolak'
+        ]);
+
+        $cuti = PengajuanCuti::findOrFail($id);
+        $cuti->status = $request->status;
+        $cuti->save();
+
+        return redirect()->back()
+            ->with('success', 'Status cuti berhasil diperbarui');
     }
 }
