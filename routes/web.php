@@ -31,7 +31,20 @@ Route::middleware(['auth', 'checkrole:owner'])
     ->name('owner.')
     ->group(function () {
 
-        Route::get('/dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
+        // Dashboard Owner
+        Route::get('/dashboard',
+            [PengajuanCutiController::class, 'dashboardOwner']
+        )->name('dashboard');
+
+        // Setujui / Tolak Cuti
+        Route::post('/pengajuan-cuti/{id}/status',
+            [OwnerController::class, 'updateStatus']
+        )->name('cuti.updateStatus');
+
+        // EXPORT PDF (KHUSUS OWNER)
+        Route::get('/pengajuan-cuti/export/pdf',
+            [PengajuanCutiController::class, 'exportPdf']
+        )->name('cuti.export.pdf');
 });
 
 
@@ -43,8 +56,8 @@ Route::middleware(['auth', 'checkrole:admin'])
     ->name('admin.')
     ->group(function () {
 
-        // Dashboard
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])
+            ->name('dashboard');
 
         // CRUD Karyawan
         Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
@@ -67,7 +80,8 @@ Route::middleware(['auth', 'checkrole:pegawai'])
     ->name('pegawai.')
     ->group(function () {
 
-        Route::get('/dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [PegawaiController::class, 'dashboard'])
+            ->name('dashboard');
 
         // Pengajuan Cuti
         Route::get('/cuti', [PengajuanCutiController::class, 'index'])->name('cuti.index');

@@ -8,7 +8,7 @@
 
 <div class="page-cuti container-fluid">
 
-    <div class="dashboard-title">Pengajuan Cuti</div>
+    <div class="dashboard-title">Data Cuti Karyawan</div>
 
     {{-- ROW STATISTIK CUTI --}}
     <div class="row g-3 mb-4">

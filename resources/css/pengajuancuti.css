@@ -1,0 +1,94 @@
+/* ===== Dashboard Pengajuan Cuti ===== */
+
+.container-fluid {
+    padding: 20px;
+}
+
+/* Judul halaman */
+.container-fluid h4 {
+    color: #1e293b;
+}
+
+/* Card */
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Table */
+.table {
+    font-size: 14px;
+}
+
+.table thead th {
+    background-color: #4f46e5 !important;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Hover row */
+.table-hover tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Badge status */
+.badge {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+.bg-warning {
+    background-color: #facc15 !important;
+    color: #000;
+}
+
+.bg-success {
+    background-color: #22c55e !important;
+}
+
+.bg-danger {
+    background-color: #ef4444 !important;
+}
+
+/* Button */
+.btn-sm {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 12px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+    .table {
+        font-size: 12px;
+    }
+
+    .btn-sm {
+        margin-bottom: 5px;
+    }
+}
