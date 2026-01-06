@@ -1,18 +1,14 @@
-/* =========================================
-   GLOBAL WRAPPER — biar konten mepet kiri
-========================================= */
-
-.content-wrapper {
-    margin-left: 260px; /* Sesuaikan sidebar */
-    padding: 20px 25px !important;
+/* =====================================================
+   PAGE WRAPPER
+===================================================== */
+.page-cuti {
+    width: 100%;
 }
 
-/* =========================================
-   CARD STYLE — modern classic
-========================================= */
-
-.card-custom {
-    margin-left: 0 !important;
+/* =====================================================
+   CARD STYLE
+===================================================== */
+.page-cuti .card-custom {
     border-radius: 16px;
     padding: 22px;
     border: 1px solid #e7e2f7;
@@ -20,190 +16,141 @@
     box-shadow: 0 6px 18px rgba(72, 31, 140, 0.08);
 }
 
-/* =========================================
-   SEARCH BOX — besar & elegan
-========================================= */
+/* =====================================================
+   DASHBOARD TITLE
+===================================================== */
+.page-cuti .dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d1f5e;
+    margin-bottom: 20px;
+}
 
-.dataTables_filter {
+/* =====================================================
+   STAT BOX
+===================================================== */
+.page-cuti .stats-box {
+    background: #f6f7fb;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.page-cuti .stats-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3b3dbf;
+}
+
+.page-cuti .stats-label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* =====================================================
+   SECTION & RULES
+===================================================== */
+.page-cuti .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 40px;
+    color: #1d1f5e;
+}
+
+.page-cuti .rules-card {
+    background: #eef0f6;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.page-cuti .rules-card h5 {
+    font-weight: 700;
+    color: #30326c;
+}
+
+.page-cuti .rules-card p {
+    margin: 0;
+    color: #444;
+    font-size: 14px;
+}
+
+/* =====================================================
+   DATATABLE — SEARCH
+===================================================== */
+.page-cuti .dataTables_filter {
     float: left !important;
-    text-align: left !important;
     margin-bottom: 15px;
 }
 
-.dataTables_filter label {
-    width: 100%;
-}
-
-.dataTables_filter input {
+.page-cuti .dataTables_filter input {
     width: 420px !important;
     padding: 12px 18px !important;
     border-radius: 12px !important;
     border: 2px solid #c4b4ff !important;
     background: #faf7ff !important;
     font-size: 15px;
-    transition: 0.2s ease;
 }
 
-.dataTables_filter input:focus {
+.page-cuti .dataTables_filter input:focus {
     border-color: #7d3bff !important;
     background: #ffffff !important;
 }
 
-/* =========================================
-   EXPORT BUTTONS — full purple modern
-========================================= */
-
-.dt-buttons .dt-button {
+/* =====================================================
+   DATATABLE — BUTTONS
+===================================================== */
+.page-cuti .dt-buttons .dt-button {
     background: #7d3bff !important;
     border: none !important;
     color: #fff !important;
     font-weight: 600;
     padding: 9px 18px !important;
-    font-size: 14px;
     border-radius: 12px !important;
     margin-left: 10px;
-    transition: 0.25s ease;
 }
 
-.dt-buttons .dt-button:hover {
+.page-cuti .dt-buttons .dt-button:hover {
     background: #5b1ecb !important;
-    transform: translateY(-1px);
 }
 
-/* =========================================
-   TABEL HEADER — ungu gelap classy
-========================================= */
-
-table.dataTable thead {
+/* =====================================================
+   TABLE HEADER & ROW
+===================================================== */
+.page-cuti table.dataTable thead {
     background: #4b1a99 !important;
-    color: #fff !important;
-    font-weight: 600;
+    color: #fff;
 }
 
-table.dataTable thead th {
+.page-cuti table.dataTable thead th {
     padding: 12px 16px !important;
-    border-bottom: none !important;
     font-size: 15px;
 }
 
-/* =========================================
-   TABEL ROW — soft hover elegant
-========================================= */
-
-table.dataTable tbody tr {
-    transition: background 0.2s ease;
-}
-
-table.dataTable tbody tr:hover {
+.page-cuti table.dataTable tbody tr:hover {
     background: #f3eaff !important;
 }
 
-/* =========================================
-   Aksi button (Edit/Hapus)
-========================================= */
-
-.btn-warning.btn-sm {
-    border-radius: 8px;
-    font-weight: 600;
-}
-
-.btn-danger.btn-sm {
-    border-radius: 8px;
-    font-weight: 600;
-}
-
-/* =========================================
-   STATUS BADGES — modern capsule
-========================================= */
-
-.badge-status {
+/* =====================================================
+   STATUS BADGE
+===================================================== */
+.page-cuti .badge-status {
     padding: 6px 12px;
     border-radius: 12px;
     font-size: 13px;
     font-weight: 600;
 }
 
-.bg-warning {
-    background-color: #ffde7a !important;
-}
+.page-cuti .bg-success { background: #5cb85c !important; }
+.page-cuti .bg-warning { background: #ffde7a !important; }
+.page-cuti .bg-danger  { background: #e74c3c !important; }
 
-.bg-success {
-    background-color: #5cb85c !important;
-}
-
-.bg-danger {
-    background-color: #e74c3c !important;
-}
-
-/* =========================================
-   PAGINATION STYLE — soft purple
-========================================= */
-
-.dataTables_paginate .paginate_button {
-    border-radius: 8px !important;
-    padding: 5px 12px !important;
-}
-
-.dataTables_paginate .paginate_button.current {
+/* =====================================================
+   PAGINATION
+===================================================== */
+.page-cuti .dataTables_paginate .paginate_button.current {
     background: #7d3bff !important;
-    color: white !important;
+    color: #fff !important;
     border: none !important;
 }
-
-.dataTables_paginate .paginate_button:hover {
-    background: #5b1ecb !important;
-    color: white !important;
-}
-
-.dashboard-title {
-        font-size: 28px;
-        font-weight: 700;
-        color: #1d1f5e;
-        margin-bottom: 20px;
-    }
-
-    .stats-box {
-        background: #f6f7fb;
-        border-radius: 12px;
-        padding: 18px 20px;
-        text-align: left;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-
-    .stats-number {
-        font-size: 32px;
-        font-weight: 700;
-        color: #3b3dbf;
-    }
-
-    .stats-label {
-        font-size: 14px;
-        color: #555;
-        margin-top: -4px;
-    }
-
-    .section-title {
-        font-size: 22px;
-        font-weight: 700;
-        margin-top: 40px;
-        color: #1d1f5e;
-    }
-
-    .rules-card {
-        background: #eef0f6;
-        padding: 18px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .rules-card h5 {
-        font-weight: 700;
-        color: #30326c;
-    }
-
-    .rules-card p {
-        margin: 0;
-        color: #444;
-        font-size: 14px;
-    }

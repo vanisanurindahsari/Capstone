@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('presensis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+    $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    $table->date('tanggal');
+    $table->time('jam_masuk')->nullable();
+    $table->time('jam_pulang')->nullable();
+    $table->decimal('latitude', 10, 7)->nullable();
+    $table->decimal('longitude', 10, 7)->nullable();
+    $table->string('foto')->nullable();
+    $table->enum('status', ['Hadir', 'Terlambat', 'Izin', 'Alpha'])->default('Hadir');
+    $table->timestamps();
         });
     }
 

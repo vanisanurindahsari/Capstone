@@ -6,5 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presensi extends Model
 {
-    //
+    protected $fillable = [
+    'user_id',
+    'tanggal',
+    'jam_masuk',
+    'jam_pulang',
+    'status',
+    'latitude',
+    'longitude',
+    'accuracy',
+    'foto',
+];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

@@ -1,49 +1,67 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+{{-- SIDEBAR --}}
+<div class="sidebar">
+    <div class="sidebar-title">ABSENSI FREE</div>
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">ABSENSI FREE</div>
-    </a>
+    {{-- ADMIN --}}
+    @if(auth()->user()->role === 'admin')
 
-    <hr class="sidebar-divider my-0">
-
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a href="{{ route('admin.dashboard') }}"
+           class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">Karyawan</div>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('karyawan.index') }}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Data Karyawan</span>
+            Dashboard
         </a>
-    </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Kehadiran</span>
-        </a>
-    </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Pengajuan Cuti</span>
-        </a>
-    </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Logout</span>
-        </a>
-    </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
+        <a href="{{ route('admin.karyawan.index') }}"
+           class="menu-item {{ request()->routeIs('admin.karyawan.*') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-users"></i>
+            Data Karyawan
+        </a>
+        
+        <a href="{{ route('admin.presensi.index') }}"
+           class="menu-item {{ request()->routeIs('admin.presensi.*') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-calendar-check"></i>
+            Presensi
+        </a>
 
-</ul>
+        <a href="#" class="menu-item">
+            <i class="fas fa-fw fa-paper-plane"></i>
+            Cuti
+        </a>
+
+    @endif
+
+    {{-- PEGAWAI --}}
+    @if(auth()->user()->role === 'pegawai')
+
+        <a href="{{ route('pegawai.dashboard') }}"
+           class="menu-item {{ request()->routeIs('pegawai.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            Dashboard Pegawai
+        </a>
+
+        <div class="menu-dropdown">
+            <a href="{{ route('pegawai.presensi.index') }}"
+               class="menu-item {{ request()->routeIs('pegawai.presensi.*') ? 'active' : '' }}">
+                <i class="fas fa-fw fa-calendar-check"></i>
+                Presensi
+            </a>
+        </div>
+
+        <div class="menu-dropdown">
+            <a href="{{ route('pegawai.cuti.index') }}"
+               class="menu-item {{ request()->routeIs('cuti.*') ? 'active' : '' }}">
+                <i class="fas fa-fw fa-file-signature"></i>
+                Pengajuan Cuti
+            </a>
+        </div>
+
+    @endif
+
+    {{-- LOGOUT --}}
+    <a href="{{ route('logout') }}"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+       class="menu-item">
+        <i class="fas fa-fw fa-sign-out-alt"></i>
+        Log Out
+    </a>
+</div>
