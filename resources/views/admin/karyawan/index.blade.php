@@ -26,6 +26,7 @@
                 <thead class="table-dark">
                     <tr class="text-center">
                         <th width="40">#</th>
+                        <th>NIK</th> {{-- Tambah kolom NIK --}}
                         <th>Nama User</th>
                         <th>Nama Lengkap</th>
                         <th>No. Telp</th>
@@ -37,29 +38,35 @@
                 <tbody>
 
                     @forelse ($karyawans as $k)
-                        <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                        <tr class="text-center">
+                            <td>{{ $loop->iteration }}</td>
 
-                            {{-- ANTISIPASI USER KOSONG --}}
-                            <td>
-                                {{ $k->user->name ?? '-' }}
-                            </td>
+                            {{-- NIK --}}
+                            <td>{{ $k->nik ?? '-' }}</td>
 
+                            {{-- Nama User --}}
+                            <td>{{ $k->user->name ?? '-' }}</td>
+
+                            {{-- Nama Lengkap --}}
                             <td>{{ $k->nama_lengkap }}</td>
+
+                            {{-- No. Telp --}}
                             <td>{{ $k->no_telp ?? '-' }}</td>
 
+                            {{-- Jenis Kelamin --}}
                             <td>
                                 <span class="badge {{ $k->jenis_kelamin == 'L' ? 'bg-primary' : 'bg-danger' }}">
                                     {{ $k->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
                                 </span>
                             </td>
 
+                            {{-- Alamat --}}
                             <td>{{ $k->alamat ?? '-' }}</td>
 
-                            <td class="text-center">
+                            {{-- Aksi --}}
+                            <td>
                                 <a href="{{ route('admin.karyawan.edit', $k->id) }}"
-                                   class="btn btn-warning btn-sm"
-                                   title="Edit">
+                                   class="btn btn-warning btn-sm" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
@@ -69,7 +76,6 @@
                                       onsubmit="return confirm('Yakin ingin menghapus data karyawan ini?')">
                                     @csrf
                                     @method('DELETE')
-
                                     <button class="btn btn-danger btn-sm" title="Hapus">
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -78,7 +84,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center text-muted py-4">
+                            <td colspan="8" class="text-center text-muted py-4">
                                 <i class="fas fa-users"></i>
                                 <br>
                                 Belum ada data karyawan

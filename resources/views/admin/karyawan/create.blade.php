@@ -11,26 +11,37 @@
             <form action="{{ route('admin.karyawan.store') }}" method="POST">
                 @csrf
 
+                {{-- Nama Lengkap --}}
                 <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" class="form-control" required>
                 </div>
 
+                {{-- NIK --}}
+                <div class="mb-3">
+                    <label class="form-label">NIK</label>
+                    <input type="text" name="nik" class="form-control" required>
+                </div>
+
+                {{-- Email --}}
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input type="email" name="email" class="form-control" required>
                 </div>
 
+                {{-- Password --}}
                 <div class="mb-3">
                     <label class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" required>
                 </div>
 
+                {{-- No. Telp --}}
                 <div class="mb-3">
                     <label class="form-label">No. Telp</label>
                     <input type="text" name="no_telp" class="form-control">
                 </div>
 
+                {{-- Jenis Kelamin --}}
                 <div class="mb-3">
                     <label class="form-label">Jenis Kelamin</label>
                     <select name="jenis_kelamin" class="form-control" required>
@@ -39,6 +50,7 @@
                     </select>
                 </div>
 
+                {{-- Alamat --}}
                 <div class="mb-3">
                     <label class="form-label">Alamat</label>
                     <textarea name="alamat" class="form-control" rows="3"></textarea>
