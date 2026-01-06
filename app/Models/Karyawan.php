@@ -12,7 +12,7 @@ class Karyawan extends Model
     protected $table = 'karyawans';
 
     protected $fillable = [
-        'id_user',
+        'user_id',
         'nama_lengkap',
         'no_telp',
         'jenis_kelamin',
@@ -25,6 +25,6 @@ class Karyawan extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class);
     }
 }
