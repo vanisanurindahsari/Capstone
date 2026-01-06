@@ -6,17 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
 
-            // Foreign Key ke users
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            // FK ke users (BEST PRACTICE)
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnDelete();
 
             $table->string('nama_lengkap');
             $table->string('no_telp', 20)->nullable();
@@ -27,9 +25,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('karyawans');

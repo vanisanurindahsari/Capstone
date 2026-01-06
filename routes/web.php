@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PengajuanCutiController;
+use App\Http\Controllers\PresensiAdminController;
+use App\Http\Controllers\PresensiPegawaiController;
+
 
 // =============================
 // LOGIN
@@ -50,6 +53,9 @@ Route::middleware(['auth', 'checkrole:admin'])
         Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit');
         Route::put('/karyawan/{id}', [KaryawanController::class, 'update'])->name('karyawan.update');
         Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
+
+        // Presensi
+        Route::get('/presensi', [PresensiAdminController::class, 'index'])->name('presensi.index');
 });
 
 
@@ -70,4 +76,12 @@ Route::middleware(['auth', 'checkrole:pegawai'])
         Route::get('/cuti/{id}/edit', [PengajuanCutiController::class, 'edit'])->name('cuti.edit');
         Route::put('/cuti/{id}', [PengajuanCutiController::class, 'update'])->name('cuti.update');
         Route::delete('/cuti/{id}', [PengajuanCutiController::class, 'destroy'])->name('cuti.delete');
+
+        // Presensi
+        // Presensi Pegawai
+        Route::get('/presensi', [PresensiPegawaiController::class, 'index'])->name('presensi.index');
+        Route::get('/presensi/create', [PresensiPegawaiController::class, 'create'])->name('presensi.create');
+        Route::post('/presensi', [PresensiPegawaiController::class, 'store'])->name('presensi.store');
+
 });
+
