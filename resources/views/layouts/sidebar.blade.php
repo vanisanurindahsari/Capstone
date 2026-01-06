@@ -2,8 +2,8 @@
 <div class="sidebar">
     <div class="sidebar-title">ABSENSI FREE</div>
 
-    {{-- ADMIN --}}
-    @if(auth()->user()->role === 'admin')
+    {{-- ADMIN & OWNER --}}
+    @if(auth()->user()->role === 'admin' || auth()->user()->role === 'owner')
 
         <a href="{{ route('admin.dashboard') }}"
            class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -23,7 +23,8 @@
             Presensi
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="{{ route('admin.cuti.index') }}"
+           class="menu-item {{ request()->routeIs('admin.cuti.*') ? 'active' : '' }}">
             <i class="fas fa-fw fa-paper-plane"></i>
             Cuti
         </a>

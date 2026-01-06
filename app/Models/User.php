@@ -51,5 +51,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Karyawan::class);
     }
+
+public function presensi()
+{
+    return $this->hasMany(Presensi::class);
+}
     
 }
