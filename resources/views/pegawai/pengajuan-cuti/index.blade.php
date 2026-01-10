@@ -8,6 +8,7 @@
     {{-- Page CSS --}}
     @vite('resources/css/cuti.css')
 @endpush
+@vite('resources/css/pengajuancuti.css')
 
 @section('content')
 
@@ -26,7 +27,7 @@
 
     <div class="card card-custom">
         <table id="cutiTable" class="table table-bordered table-striped align-middle">
-            <thead class="table-dark">
+            <thead class="table-primary">
                 <tr>
                     <th>Nomor Induk Karyawan</th>
                     <th>Jenis Cuti</th>
@@ -102,18 +103,14 @@
     <script>
     $(document).ready(function () {
         $('#cutiTable').DataTable({
-            responsive: true,
-            dom: '<"row mb-3"<"col-md-6"f><"col-md-6 text-end"B>>rt<"row mt-3"<"col-md-6"l><"col-md-6 text-end"p>>',
-            buttons: [
-                { extend: 'excelHtml5', text: '<i class="fa fa-file-excel"></i> Excel' },
-                { extend: 'pdfHtml5',   text: '<i class="fa fa-file-pdf"></i> PDF' },
-                { extend: 'print',      text: '<i class="fa fa-print"></i> Print' }
-            ],
-            language: {
-                search: "",
-                searchPlaceholder: "Cari data cuti..."
-            }
-        });
+    responsive: true,
+    dom: '<"row mb-3"<"col-md-6"f>>rt<"row mt-3"<"col-md-6"l><"col-md-6 text-end"p>>',
+    language: {
+        search: "",
+        searchPlaceholder: "Cari data cuti..."
+    }
+});
+
     });
     </script>
 @endpush

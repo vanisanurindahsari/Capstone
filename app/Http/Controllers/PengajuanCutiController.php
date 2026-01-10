@@ -104,7 +104,7 @@ class PengajuanCutiController extends Controller
     public function dashboardOwner()
     {
         $pengajuan = PengajuanCuti::latest()->get();
-        return view('owner.dashboard', compact('pengajuan'));
+        return view('owner.viewdatacuti', compact('pengajuan'));
     }
 
     public function exportPdf()

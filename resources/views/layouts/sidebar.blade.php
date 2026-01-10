@@ -2,8 +2,8 @@
 <div class="sidebar">
     <div class="sidebar-title">ABSENSI FREE</div>
 
-    {{-- ADMIN & OWNER --}}
-    @if(auth()->user()->role === 'admin' || auth()->user()->role === 'owner')
+    {{-- ADMIN --}}
+    @if(auth()->user()->role === 'admin')
 
         <a href="{{ route('admin.dashboard') }}"
            class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -25,6 +25,23 @@
 
         <a href="{{ route('admin.cuti.index') }}"
            class="menu-item {{ request()->routeIs('admin.cuti.*') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-paper-plane"></i>
+            Cuti
+        </a>
+
+    @endif
+    
+    {{-- OWNER --}}
+    @if(auth()->user()->role === 'owner')
+
+        <a href="{{ route('owner.dashboard') }}"
+           class="menu-item {{ request()->routeIs('owner.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            Dashboard
+        </a>
+
+        <a href="{{ route('owner.cuti.index') }}"
+           class="menu-item {{ request()->routeIs('owner.cuti.*') ? 'active' : '' }}">
             <i class="fas fa-fw fa-paper-plane"></i>
             Cuti
         </a>

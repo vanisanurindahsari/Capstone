@@ -9,8 +9,9 @@
     <style>
         .right-side {
             background: #2e7d32; /* hijau */
-            border-bottom-left-radius: 120px; /* lengkung */
+            border-bottom-left-radius: 120px;
             position: relative;
+            overflow: hidden; /* 🔥 penting biar rapi */
         }
 
         .logo-wrapper {
@@ -18,15 +19,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden; 
         }
 
         .logo-img {
-            width: 180px;      /* sesuaikan ukuran */
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%; /* bikin bulat */
-            border: 5px solid #fff; /* garis putih opsional */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;        
+            transform: scale(1.3);    
         }
     </style>
 </head>
@@ -62,7 +65,9 @@
             <!-- RIGHT SIDE WITH LOGO -->
             <div class="col-md-6 right-side d-none d-md-block">
                 <div class="logo-wrapper">
-                    <img src="{{ Vite::asset('resources/img/logo.jpg') }}" alt="Logo" class="logo-img">
+                    <img src="{{ Vite::asset('resources/img/logo.jpg') }}" 
+                         alt="Logo"
+                         class="logo-img">
                 </div>
             </div>
 

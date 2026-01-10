@@ -8,6 +8,7 @@
     {{-- Page CSS (reuse cuti style) --}}
     @vite('resources/css/cuti.css')
 @endpush
+@vite('resources/css/pengajuancuti.css')
 
 @section('content')
 
@@ -28,7 +29,7 @@
 
     <div class="card card-custom">
         <table id="presensiTable" class="table table-bordered table-striped align-middle">
-            <thead class="table-dark">
+            <thead class="table-primary">
                 <tr>
                     <th>Tanggal</th>
                     <th>Jam Masuk</th>

@@ -33,19 +33,8 @@ Route::middleware(['auth', 'checkrole:owner'])
         // Dashboard Owner
         Route::get('/dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
 
-        // CRUD Karyawan
-        Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
-        Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
-        Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
-        Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit');
-        Route::put('/karyawan/{id}', [KaryawanController::class, 'update'])->name('karyawan.update');
-        Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
-
-        // Presensi
-        Route::get('/presensi', [PresensiAdminController::class, 'index'])->name('presensi.index');
-
-        // Cuti
-        Route::get('/cuti', [CutiAdminController::class, 'index'])->name('cuti.index');
+        // Halaman Cuti
+        Route::get('/cuti', [OwnerController::class, 'index'])->name('cuti.index');
 
         // ACC/Tolak Cuti
         Route::post('/pengajuan-cuti/{id}/status', [OwnerController::class, 'updateStatus'])->name('cuti.updateStatus');

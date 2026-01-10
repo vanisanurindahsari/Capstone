@@ -19,13 +19,15 @@
 </style>
 @endpush
 
+@vite('resources/css/pengajuancuti.css')
+
 @section('content')
 
 <h3 class="page-title mb-3">Data Pengajuan Cuti Karyawan</h3>
 
 <div class="card card-custom p-3">
     <table id="cutiAdminTable" class="table table-bordered table-striped align-middle">
-        <thead class="table-dark">
+        <thead class="table-primary">
             <tr>
                 <th>No</th>
                 <th>NIK</th>

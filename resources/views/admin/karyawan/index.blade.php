@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite('resources/css/pengajuancuti.css')
 
 @section('content')
 <div class="container-fluid">
@@ -23,7 +24,7 @@
         <div class="card-body table-responsive">
 
             <table class="table table-bordered table-striped align-middle mb-0">
-                <thead class="table-dark">
+                <thead class="table-primary">
                     <tr class="text-center">
                         <th width="40">#</th>
                         <th>Nama User</th>
